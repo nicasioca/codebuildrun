@@ -1,63 +1,61 @@
-# Docsy Example
+# Code Build Run Docs
 
-[Docsy][] is a [Hugo theme module][] for technical documentation sites, providing easy
-site navigation, structure, and more. This **Docsy Example Project** uses the Docsy
-theme component as a hugo module and provides a skeleton documentation structure for you to use.
-You can clone/copy this project and edit it with your own content, or use it as an example.
-
-In this project, the Docsy theme component is pulled in as a Hugo module, together with other module dependencies:
-
-```bash
-$ hugo mod graph
-hugo: collected modules in 566 ms
-hugo: collected modules in 578 ms
-github.com/google/docsy-example github.com/google/docsy@v0.2.0
-github.com/google/docsy-example github.com/google/docsy/dependencies@v0.2.0
-github.com/google/docsy/dependencies@v0.2.0 github.com/twbs/bootstrap@v4.6.1+incompatible
-github.com/google/docsy/dependencies@v0.2.0 github.com/FortAwesome/Font-Awesome@v0.0.0-20210804190922-7d3d774145ac
-```
-
-You can find detailed theme instructions in the [Docsy user guide][].
-
-This Docsy Example Project is hosted on [Netlify][] at [example.docsy.dev][].
-You can view deploy logs from the [deploy section of the project's Netlify
-dashboard][deploys], or this [alternate dashboard][].
-
-This is not an officially supported Google product. This project is currently maintained.
-
-## Using the Docsy Example Project as a template
-
-A simple way to get started is to use this project as a template, which gives you a site project that is set up and ready to use. To do this: 
-
-1. Click **Use this template**.
-
-2. Select a name for your new project and click **Create repository from template**.
-
-3. Make your own local working copy of your new repo using git clone, replacing https://github.com/me/example.git with your repo’s web URL:
-
-```bash
-git clone --depth 1 https://github.com/me/example.git
-```
-
-You can now edit your own versions of the site’s source files.
-
-If you want to do SCSS edits and want to publish these, you need to install `PostCSS`
-
-```bash
-npm install
-```
+> Docs from a software engineer / entrepreneur.
 
 ## Running the website locally
 
-Building and running the site locally requires a recent `extended` version of [Hugo](https://gohugo.io).
-You can find out more about how to install Hugo for your environment in our
-[Getting started](https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation) guide.
+To create my documentation site I cloned a working copy of the site repo https://github.com/google/docsy-example, and to run my website locally you can simply clone my repo and follow the simplified steps below.
 
-Once you've made your working copy of the site repo, from the repo root folder, run:
+I installed the required prerequisites below (Go, Node, Git, and Hugo), from the repo root folder, run `hugo server` via npm:
 
 ```
-hugo server
+npm run build
+npm run serve
 ```
+
+### Install Go language
+
+Hugo's commands for module management require that the Go programming language is installed on your system. Check whether `go` is already installed:
+
+```bash
+$ go version
+go version go1.18.4 windows/amd64
+```
+
+Ensure that you are using version 1.12 or higher.
+
+If the `go` language is not installed on your system yet or if you need to upgrade, go to the [download area](https://go.dev/dl/) of the Go website, choose the installer for your system architecture and execute it. Afterwards, check for a successful installation.
+
+### Install/Upgrade Node.js
+
+To ensure you can properly build your site beyond executing `hugo server`, you must have the [latest long term support (LTS) Version](https://nodejs.org/en/about/releases/) of Node.js.
+
+### Install Git VCS client
+
+Hugo's commands for module management require that the `git` client is installed on your system. Check whether `git` is already present in your system:
+
+```bash
+git version
+git version 2.37.1.windows.1
+```
+
+If no `git` client is installed on your system yet, go to the [Git website](https://git-scm.com/), download the installer for your system architecture and execute it. Afterwards, check for a successful installation.
+
+### Install Hugo
+
+You need a [recent **extended** version](https://github.com/gohugoio/hugo/releases) (we recommend version 0.73.0 or later) of [Hugo](https://gohugo.io/) to do local builds and previews of sites (like this one) that use Docsy. If you install from the release page, make sure to get the `extended` Hugo version, which supports [SCSS](https://sass-lang.com/documentation/file.SCSS_FOR_SASS_USERS.html); you may need to scroll down the list of releases to see it.
+
+For comprehensive Hugo documentation, see [gohugo.io](https://gohugo.io/).
+
+#### As an `npm` module
+
+You can install Hugo as an `npm` module using [`hugo-bin`](https://www.npmjs.com/package/hugo-bin). This adds `hugo-bin` to your `node_modules` folder and adds the dependency to your `package.json` file.  To install the extended version of Hugo:
+
+```bash
+npm install hugo-extended --save-dev
+```
+
+See the [`hugo-bin` documentation](https://www.npmjs.com/package/hugo-bin) for usage details.
 
 ## Running a container locally
 
@@ -100,39 +98,3 @@ docker-compose rm
 ```
 For more information see the [Docker Compose
 documentation](https://docs.docker.com/compose/gettingstarted/).
-
-## Troubleshooting
-
-As you run the website locally, you may run into the following error:
-
-```
-➜ hugo server
-
-INFO 2021/01/21 21:07:55 Using config file: 
-Building sites … INFO 2021/01/21 21:07:55 syncing static files to /
-Built in 288 ms
-Error: Error building site: TOCSS: failed to transform "scss/main.scss" (text/x-scss): resource "scss/scss/main.scss_9fadf33d895a46083cdd64396b57ef68" not found in file cache
-```
-
-This error occurs if you have not installed the extended version of Hugo.
-See this [section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-hugo) of the user guide for instructions on how to install Hugo.
-
-Or you may encounter the following error:
-
-```
-➜ hugo server
-
-Error: failed to download modules: binary with name "go" not found
-```
-
-This error occurs if you have not installed the `go` programming language on your system.
-See this [section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-go-language) of the user guide for instructions on how to install `go`.
-
-
-[alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
-[deploys]: https://app.netlify.com/sites/docsy-example/deploys
-[Docsy user guide]: https://docsy.dev/docs
-[Docsy]: https://github.com/google/docsy
-[example.docsy.dev]: https://example.docsy.dev
-[Hugo theme module]: https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme
-[Netlify]: https://netlify.com
